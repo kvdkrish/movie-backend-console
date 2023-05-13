@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect } from "react";
+import React, { useCallback, useContext } from "react";
 import Head from "next/head";
 import { asRem, styled } from "styles/stitchesConfig";
 import Grid from "components/Grid";
@@ -13,7 +13,6 @@ import MovieForm from "components/MovieForm";
 import GridActions from "components/GridActions";
 import { useMoviesAPI } from "api/moviesAPI";
 import Toast from "components/Toast";
-import { useRouter } from "next/router";
 
 export async function getServerSideProps() {
 	const { data = {} } = await client.query({
@@ -80,7 +79,6 @@ interface IMovieListProps {
 }
 
 function MovieList({ data }: IMovieListProps) {
-	const router = useRouter();
 	const [movieListState, movieListDispatch] = useContext(MovieListContext);
 	const { fetchMovie, isFetchLoading } = useMoviesAPI();
 	const {
